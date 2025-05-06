@@ -3,7 +3,7 @@
 # VARS
 time=$(date +%Y-%m-%d)
 pub_ip=$(curl -s --max-time 2 ifconfig.me || echo "Uknown IP")
-img_path="/home/sboistel/Documents/repos/sboistel/denker/capture"
+img_path="/opt/denker/capture"
 
 # Check if Docker image exists
 docker_sender_exists=$(docker image ls | grep "docker_sender")
