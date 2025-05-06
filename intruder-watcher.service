@@ -1,0 +1,10 @@
+[Unit]
+Description=Intrusion Detection Mailer
+After=network.target
+
+[Service]
+ExecStart=/opt/denker/detect_intrusion.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
