@@ -8,7 +8,7 @@ img_path="/opt/denker/capture"
 # Check if Docker image exists
 docker_sender_exists=$(docker image ls | grep "docker_sender")
 if [ ! -n "$docker_sender_exists" ]; then
-  docker build -t docker_sender /opt/denker/
+  docker build -t denker /opt/denker/
 fi
 
 # Watch for authentication failures
