@@ -17,6 +17,8 @@ if [ ! -n "$denker_exists" ]; then
   docker build -t denker $(pwd)
 fi
 
+echo "Start monitoring authentication..."
+
 # Watch for authentication failures
 journalctl -f | while read -r line; do
   if echo "$line" | grep -q "pam_unix(gdm-password:auth): authentication failure"; then
