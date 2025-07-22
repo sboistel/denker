@@ -5,6 +5,12 @@ time=$(date +%Y-%m-%d)
 pub_ip=$(curl -s --max-time 2 ifconfig.me || echo "Uknown IP")
 img_path="$(pwd)/capture"
 
+# Check if required packages are installed
+if ! command -v fswebcam &> /dev/null; then
+  echo "fswebcam is not installed. Please install it to capture images."
+  exit 1
+fi
+
 # Check if Docker image exists
 denker_exists=$(docker image ls | grep "denker")
 if [ ! -n "$denker_exists" ]; then
