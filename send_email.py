@@ -9,6 +9,8 @@ from datetime import datetime
 
 # Load environment variables from .env file
 load_dotenv(dotenv_path='/app/.env')
+# load_dotenv(dotenv_path='.env')
+
 
 SMTP_HOST = os.getenv('SMTP_HOST')
 SMTP_PORT = int(os.getenv('SMTP_PORT'))
@@ -23,13 +25,14 @@ message = sys.argv[1] if len(sys.argv) > 1 else "Unknown event detected."
 
 # Building the email
 msg = MIMEMultipart()
-msg['Subject'] = "Authentication failure on isaac"
+msg['Subject'] = "Authentication failure on " + SMTP_FROM
 msg['From'] = SMTP_FROM
 msg['To'] = SMTP_TO
 msg.attach(MIMEText(message, 'plain'))
 
 # Adding the image
 img_path = f"/app/capture/{datetime.now().strftime('%Y-%m-%d')}.jpg"
+# img_path = f"capture/{datetime.now().strftime('%Y-%m-%d')}.jpg"
 if os.path.isfile(img_path):
     print(f"Attaching image: {img_path}")
     with open(img_path, "rb") as f:
